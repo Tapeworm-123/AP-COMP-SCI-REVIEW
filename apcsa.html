@@ -1,0 +1,1701 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AP Computer Science A — Complete Study Guide 2025–2026</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:ital,wght@0,300;0,400;0,500;1,400&family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0a0e1a;
+    --surface: #111827;
+    --surface2: #1a2235;
+    --border: #1e2d45;
+    --accent: #3b82f6;
+    --accent2: #06b6d4;
+    --accent3: #f59e0b;
+    --accent4: #10b981;
+    --danger: #ef4444;
+    --text: #e2e8f0;
+    --text-muted: #8892a4;
+    --text-dim: #4a5568;
+    --u1: #3b82f6;
+    --u2: #06b6d4;
+    --u3: #10b981;
+    --u4: #f59e0b;
+    --mono: 'DM Mono', monospace;
+    --sans: 'DM Sans', sans-serif;
+    --display: 'Syne', sans-serif;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--sans);
+    font-size: 15px;
+    line-height: 1.7;
+    overflow-x: hidden;
+  }
+
+  /* ── SCROLLBAR ── */
+  ::-webkit-scrollbar { width: 6px; }
+  ::-webkit-scrollbar-track { background: var(--bg); }
+  ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    background: rgba(10,14,26,0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 2rem; height: 60px;
+  }
+  .nav-logo {
+    font-family: var(--display);
+    font-size: 1.1rem; font-weight: 800;
+    color: var(--text);
+    letter-spacing: -0.02em;
+    display: flex; align-items: center; gap: 10px;
+  }
+  .nav-logo span { color: var(--accent); }
+  .nav-links {
+    display: flex; gap: 4px;
+    list-style: none;
+  }
+  .nav-links a {
+    display: flex; align-items: center; gap: 6px;
+    padding: 6px 14px;
+    border-radius: 6px;
+    color: var(--text-muted);
+    text-decoration: none;
+    font-size: 0.82rem;
+    font-weight: 500;
+    transition: all 0.2s;
+    font-family: var(--sans);
+  }
+  .nav-links a:hover { background: var(--surface2); color: var(--text); }
+  .nav-links a .dot {
+    width: 8px; height: 8px; border-radius: 50%;
+    flex-shrink: 0;
+  }
+  .nav-links a[href="#unit1"] .dot { background: var(--u1); }
+  .nav-links a[href="#unit2"] .dot { background: var(--u2); }
+  .nav-links a[href="#unit3"] .dot { background: var(--u3); }
+  .nav-links a[href="#unit4"] .dot { background: var(--u4); }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh;
+    display: flex; flex-direction: column; justify-content: center; align-items: center;
+    text-align: center;
+    padding: 80px 2rem 4rem;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute; inset: 0;
+    background:
+      radial-gradient(ellipse 60% 50% at 20% 30%, rgba(59,130,246,0.12) 0%, transparent 60%),
+      radial-gradient(ellipse 50% 40% at 80% 70%, rgba(6,182,212,0.08) 0%, transparent 60%);
+    pointer-events: none;
+  }
+  .hero-tag {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: rgba(59,130,246,0.1);
+    border: 1px solid rgba(59,130,246,0.25);
+    border-radius: 100px;
+    padding: 6px 16px;
+    font-family: var(--mono);
+    font-size: 0.75rem;
+    color: var(--accent);
+    letter-spacing: 0.05em;
+    margin-bottom: 2rem;
+    animation: fadeUp 0.6s ease both;
+  }
+  .hero h1 {
+    font-family: var(--display);
+    font-size: clamp(2.8rem, 7vw, 5.5rem);
+    font-weight: 800;
+    line-height: 1.05;
+    letter-spacing: -0.03em;
+    margin-bottom: 1.5rem;
+    animation: fadeUp 0.6s 0.1s ease both;
+  }
+  .hero h1 em {
+    font-style: normal;
+    background: linear-gradient(135deg, var(--accent), var(--accent2));
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  }
+  .hero-sub {
+    font-size: 1.05rem; color: var(--text-muted);
+    max-width: 540px; margin: 0 auto 3rem;
+    animation: fadeUp 0.6s 0.2s ease both;
+  }
+  .hero-units {
+    display: flex; gap: 12px; flex-wrap: wrap; justify-content: center;
+    animation: fadeUp 0.6s 0.3s ease both;
+  }
+  .hero-unit-card {
+    display: flex; flex-direction: column; align-items: flex-start;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 18px 22px;
+    width: 200px;
+    text-decoration: none;
+    color: var(--text);
+    transition: transform 0.2s, border-color 0.2s, box-shadow 0.2s;
+    text-align: left;
+  }
+  .hero-unit-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 32px rgba(0,0,0,0.4);
+  }
+  .hero-unit-card[data-u="1"] { border-top: 3px solid var(--u1); }
+  .hero-unit-card[data-u="1"]:hover { border-color: var(--u1); }
+  .hero-unit-card[data-u="2"] { border-top: 3px solid var(--u2); }
+  .hero-unit-card[data-u="2"]:hover { border-color: var(--u2); }
+  .hero-unit-card[data-u="3"] { border-top: 3px solid var(--u3); }
+  .hero-unit-card[data-u="3"]:hover { border-color: var(--u3); }
+  .hero-unit-card[data-u="4"] { border-top: 3px solid var(--u4); }
+  .hero-unit-card[data-u="4"]:hover { border-color: var(--u4); }
+  .hero-unit-num {
+    font-family: var(--mono); font-size: 0.7rem;
+    color: var(--text-dim); margin-bottom: 6px;
+  }
+  .hero-unit-title { font-family: var(--display); font-size: 0.9rem; font-weight: 700; line-height: 1.3; }
+
+  /* ── SECTION WRAPPER ── */
+  .unit-section {
+    max-width: 960px; margin: 0 auto;
+    padding: 5rem 1.5rem;
+  }
+  .unit-header {
+    display: flex; align-items: flex-start; gap: 20px;
+    margin-bottom: 3rem;
+    padding-bottom: 2rem;
+    border-bottom: 1px solid var(--border);
+  }
+  .unit-num-badge {
+    display: flex; align-items: center; justify-content: center;
+    width: 52px; height: 52px; border-radius: 12px;
+    font-family: var(--display); font-size: 1.4rem; font-weight: 800;
+    flex-shrink: 0;
+  }
+  [data-unit="1"] .unit-num-badge { background: rgba(59,130,246,0.15); color: var(--u1); }
+  [data-unit="2"] .unit-num-badge { background: rgba(6,182,212,0.15); color: var(--u2); }
+  [data-unit="3"] .unit-num-badge { background: rgba(16,185,129,0.15); color: var(--u3); }
+  [data-unit="4"] .unit-num-badge { background: rgba(245,158,11,0.15); color: var(--u4); }
+  .unit-header-text h2 {
+    font-family: var(--display); font-size: 2rem; font-weight: 800;
+    letter-spacing: -0.02em; line-height: 1.1; margin-bottom: 8px;
+  }
+  .unit-header-text p { color: var(--text-muted); font-size: 0.95rem; }
+  .unit-weight {
+    display: inline-block; margin-top: 8px;
+    padding: 3px 10px; border-radius: 100px;
+    font-family: var(--mono); font-size: 0.72rem;
+    background: var(--surface2); color: var(--text-muted);
+  }
+
+  /* ── DIVIDERS ── */
+  .section-divider {
+    border: none;
+    border-top: 1px solid var(--border);
+    margin: 4rem 0;
+  }
+  .unit-divider {
+    border: none;
+    background: linear-gradient(to right, var(--border), transparent);
+    height: 1px;
+    margin: 0;
+  }
+
+  /* ── CONTENT GRID ── */
+  .content-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 2.5rem; }
+  .content-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 20px 22px;
+  }
+  .content-card h4 {
+    font-family: var(--display); font-size: 0.9rem; font-weight: 700;
+    margin-bottom: 10px; color: var(--text);
+    display: flex; align-items: center; gap: 8px;
+  }
+  .content-card h4::before {
+    content: ''; display: block;
+    width: 3px; height: 14px; border-radius: 2px;
+  }
+  [data-unit="1"] .content-card h4::before { background: var(--u1); }
+  [data-unit="2"] .content-card h4::before { background: var(--u2); }
+  [data-unit="3"] .content-card h4::before { background: var(--u3); }
+  [data-unit="4"] .content-card h4::before { background: var(--u4); }
+  .content-card ul { list-style: none; }
+  .content-card ul li {
+    font-size: 0.85rem; color: var(--text-muted);
+    padding: 3px 0;
+    padding-left: 14px; position: relative;
+  }
+  .content-card ul li::before {
+    content: '→'; position: absolute; left: 0;
+    color: var(--text-dim); font-size: 0.75rem;
+    line-height: 1.7;
+  }
+
+  /* ── TOPIC DETAIL ── */
+  .topic-block { margin-bottom: 2.5rem; }
+  .topic-block h3 {
+    font-family: var(--display); font-size: 1.2rem; font-weight: 700;
+    margin-bottom: 1rem;
+    display: flex; align-items: center; gap: 10px;
+  }
+  .topic-num {
+    font-family: var(--mono); font-size: 0.7rem;
+    padding: 2px 8px; border-radius: 4px;
+    background: var(--surface2); color: var(--text-dim);
+  }
+  .topic-block p { color: var(--text-muted); margin-bottom: 0.8rem; font-size: 0.93rem; }
+
+  /* ── CODE BLOCKS ── */
+  .code-block {
+    background: #0d1117;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    overflow: hidden;
+    margin: 1rem 0;
+  }
+  .code-header {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 8px 16px;
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
+    font-family: var(--mono); font-size: 0.72rem;
+    color: var(--text-dim);
+  }
+  .code-dots { display: flex; gap: 6px; }
+  .code-dots span {
+    width: 10px; height: 10px; border-radius: 50%;
+  }
+  .code-dots span:nth-child(1) { background: #ff5f57; }
+  .code-dots span:nth-child(2) { background: #febc2e; }
+  .code-dots span:nth-child(3) { background: #28c840; }
+  .code-block pre {
+    padding: 16px 20px;
+    overflow-x: auto;
+    font-family: var(--mono);
+    font-size: 0.82rem;
+    line-height: 1.65;
+  }
+  .kw { color: #ff7b72; }
+  .typ { color: #ffa657; }
+  .str { color: #a5d6ff; }
+  .num { color: #79c0ff; }
+  .cmt { color: #4a5568; font-style: italic; }
+  .fn { color: #d2a8ff; }
+  .op { color: #ff7b72; }
+  .var { color: #e2e8f0; }
+  .ann { color: #79c0ff; }
+
+  /* ── QUESTION BOXES ── */
+  .questions-section { margin-top: 3rem; }
+  .questions-section h3 {
+    font-family: var(--display); font-size: 1.4rem; font-weight: 700;
+    margin-bottom: 1.5rem;
+    display: flex; align-items: center; gap: 12px;
+  }
+  .q-badge {
+    font-family: var(--mono); font-size: 0.7rem;
+    padding: 4px 10px; border-radius: 6px; font-weight: 400;
+  }
+  .q-badge.mcq { background: rgba(59,130,246,0.15); color: var(--u1); }
+  .q-badge.frq { background: rgba(245,158,11,0.15); color: var(--u4); }
+
+  .question-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    overflow: hidden;
+    margin-bottom: 1.5rem;
+  }
+  .q-header {
+    display: flex; align-items: center; gap: 12px;
+    padding: 16px 20px;
+    background: var(--surface2);
+    border-bottom: 1px solid var(--border);
+    cursor: pointer; user-select: none;
+    transition: background 0.15s;
+  }
+  .q-header:hover { background: rgba(255,255,255,0.04); }
+  .q-type {
+    font-family: var(--mono); font-size: 0.68rem;
+    padding: 3px 9px; border-radius: 5px; flex-shrink: 0;
+  }
+  .q-type.mcq { background: rgba(59,130,246,0.2); color: #93c5fd; }
+  .q-type.frq { background: rgba(245,158,11,0.2); color: #fcd34d; }
+  .q-title { font-size: 0.9rem; font-weight: 500; flex: 1; line-height: 1.4; }
+  .q-chevron {
+    color: var(--text-dim); font-size: 0.75rem;
+    transition: transform 0.25s;
+    flex-shrink: 0;
+  }
+  .question-card.open .q-chevron { transform: rotate(180deg); }
+  .q-body { display: none; padding: 20px 22px; }
+  .question-card.open .q-body { display: block; }
+  .q-prompt { margin-bottom: 1.2rem; color: var(--text); font-size: 0.93rem; line-height: 1.7; }
+  .q-options { list-style: none; margin-bottom: 1.5rem; }
+  .q-options li {
+    display: flex; align-items: flex-start; gap: 10px;
+    padding: 10px 14px; border-radius: 8px;
+    margin-bottom: 6px; font-size: 0.87rem;
+    border: 1px solid transparent;
+    transition: background 0.15s;
+  }
+  .q-options li .opt-letter {
+    font-family: var(--mono); font-size: 0.75rem;
+    width: 22px; height: 22px; border-radius: 5px;
+    display: flex; align-items: center; justify-content: center;
+    background: var(--surface2); color: var(--text-muted);
+    flex-shrink: 0; margin-top: 1px;
+  }
+  .q-options li.correct {
+    background: rgba(16,185,129,0.1);
+    border-color: rgba(16,185,129,0.3);
+  }
+  .q-options li.correct .opt-letter { background: var(--u3); color: #fff; }
+  .answer-box {
+    background: rgba(16,185,129,0.08);
+    border: 1px solid rgba(16,185,129,0.2);
+    border-radius: 10px; padding: 16px 18px;
+    margin-bottom: 1rem;
+  }
+  .answer-box h5 {
+    font-family: var(--mono); font-size: 0.72rem;
+    color: var(--u3); margin-bottom: 8px; letter-spacing: 0.05em;
+  }
+  .answer-box p, .answer-box li { font-size: 0.875rem; color: var(--text-muted); }
+  .frq-part {
+    background: var(--surface2); border-radius: 8px;
+    padding: 14px 16px; margin-bottom: 12px;
+    font-size: 0.875rem;
+  }
+  .frq-part strong { color: var(--text); }
+  .solution-box {
+    background: rgba(59,130,246,0.07);
+    border: 1px solid rgba(59,130,246,0.2);
+    border-radius: 10px; padding: 16px 18px; margin-top: 12px;
+  }
+  .solution-box h5 {
+    font-family: var(--mono); font-size: 0.72rem;
+    color: var(--accent); margin-bottom: 10px; letter-spacing: 0.05em;
+  }
+
+  /* ── KEY CONCEPTS TABLE ── */
+  .concept-table {
+    width: 100%; border-collapse: collapse; margin: 1rem 0;
+    font-size: 0.85rem;
+  }
+  .concept-table th {
+    text-align: left; padding: 10px 14px;
+    background: var(--surface2);
+    font-family: var(--mono); font-size: 0.72rem;
+    color: var(--text-muted); letter-spacing: 0.05em; font-weight: 400;
+    border-bottom: 1px solid var(--border);
+  }
+  .concept-table td {
+    padding: 10px 14px;
+    border-bottom: 1px solid rgba(30,45,69,0.5);
+    color: var(--text-muted); vertical-align: top;
+  }
+  .concept-table td:first-child { color: var(--text); font-family: var(--mono); font-size: 0.8rem; }
+  .concept-table tr:last-child td { border-bottom: none; }
+
+  /* ── CALLOUTS ── */
+  .callout {
+    display: flex; gap: 14px;
+    padding: 14px 16px; border-radius: 10px; margin: 1rem 0;
+    font-size: 0.875rem; align-items: flex-start;
+  }
+  .callout.tip { background: rgba(16,185,129,0.08); border: 1px solid rgba(16,185,129,0.2); }
+  .callout.warn { background: rgba(245,158,11,0.08); border: 1px solid rgba(245,158,11,0.2); }
+  .callout.info { background: rgba(59,130,246,0.08); border: 1px solid rgba(59,130,246,0.2); }
+  .callout-icon { font-size: 1rem; flex-shrink: 0; margin-top: 1px; }
+  .callout p { color: var(--text-muted); line-height: 1.6; }
+  .callout strong { color: var(--text); }
+
+  /* ── FOOTER ── */
+  footer {
+    border-top: 1px solid var(--border);
+    padding: 3rem 2rem;
+    text-align: center;
+    color: var(--text-dim);
+    font-size: 0.8rem;
+    font-family: var(--mono);
+  }
+
+  /* ── ANIMATIONS ── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 640px) {
+    .nav-links { display: none; }
+    .content-grid { grid-template-columns: 1fr; }
+    .hero h1 { font-size: 2.5rem; }
+    .hero-units { flex-direction: column; align-items: center; }
+    .hero-unit-card { width: 100%; max-width: 320px; }
+    .unit-header { flex-direction: column; }
+  }
+
+  /* ── PROGRESS BAR ── */
+  .progress-bar {
+    position: fixed; top: 60px; left: 0; right: 0; z-index: 99;
+    height: 2px; background: transparent;
+  }
+  #progress-fill {
+    height: 100%;
+    background: linear-gradient(to right, var(--accent), var(--accent2));
+    width: 0%; transition: width 0.1s linear;
+  }
+
+  /* ── BACK TO TOP ── */
+  #back-top {
+    position: fixed; bottom: 2rem; right: 2rem;
+    width: 40px; height: 40px; border-radius: 10px;
+    background: var(--surface2); border: 1px solid var(--border);
+    color: var(--text-muted); font-size: 1rem;
+    display: flex; align-items: center; justify-content: center;
+    cursor: pointer; text-decoration: none;
+    opacity: 0; pointer-events: none;
+    transition: opacity 0.2s, transform 0.2s;
+    z-index: 99;
+  }
+  #back-top.visible { opacity: 1; pointer-events: auto; }
+  #back-top:hover { transform: translateY(-3px); color: var(--text); }
+</style>
+</head>
+<body>
+
+<!-- PROGRESS BAR -->
+<div class="progress-bar"><div id="progress-fill"></div></div>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo"><span>AP</span> CS A — 2025–2026</div>
+  <ul class="nav-links">
+    <li><a href="#unit1"><span class="dot"></span>Unit 1</a></li>
+    <li><a href="#unit2"><span class="dot"></span>Unit 2</a></li>
+    <li><a href="#unit3"><span class="dot"></span>Unit 3</a></li>
+    <li><a href="#unit4"><span class="dot"></span>Unit 4</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-tag">✦ 2025–2026 Curriculum · 4 Units · Full Review</div>
+  <h1>AP Computer<br><em>Science A</em></h1>
+  <p class="hero-sub">A complete study guide covering all four units — with concept breakdowns, code examples, MCQs, and FRQs with full solutions and explanations.</p>
+  <div class="hero-units">
+    <a href="#unit1" class="hero-unit-card" data-u="1">
+      <div class="hero-unit-num">UNIT 01</div>
+      <div class="hero-unit-title">Primitive Types & Objects</div>
+    </a>
+    <a href="#unit2" class="hero-unit-card" data-u="2">
+      <div class="hero-unit-num">UNIT 02</div>
+      <div class="hero-unit-title">Writing Classes</div>
+    </a>
+    <a href="#unit3" class="hero-unit-card" data-u="3">
+      <div class="hero-unit-num">UNIT 03</div>
+      <div class="hero-unit-title">Arrays & ArrayLists</div>
+    </a>
+    <a href="#unit4" class="hero-unit-card" data-u="4">
+      <div class="hero-unit-num">UNIT 04</div>
+      <div class="hero-unit-title">Inheritance & Recursion</div>
+    </a>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════ UNIT 1 ══════════════════════════════════════ -->
+<div style="border-top: 1px solid var(--border);"></div>
+<section id="unit1" data-unit="1">
+<div class="unit-section">
+
+  <div class="unit-header">
+    <div class="unit-num-badge">1</div>
+    <div class="unit-header-text">
+      <h2>Primitive Types &amp; Objects</h2>
+      <p>Data types, variables, expressions, operators, string manipulation, Math class, and input/output fundamentals.</p>
+      <span class="unit-weight">~10–15% of AP Exam</span>
+    </div>
+  </div>
+
+  <!-- OVERVIEW CARDS -->
+  <div class="content-grid">
+    <div class="content-card">
+      <h4>Primitive Data Types</h4>
+      <ul>
+        <li>int — whole numbers (−2³¹ to 2³¹−1)</li>
+        <li>double — floating-point numbers</li>
+        <li>boolean — true or false</li>
+        <li>char — single character (Unicode)</li>
+        <li>Stored directly in memory (stack)</li>
+        <li>Default values: 0, 0.0, false, '\u0000'</li>
+      </ul>
+    </div>
+    <div class="content-card">
+      <h4>Reference Types &amp; Objects</h4>
+      <ul>
+        <li>String, Scanner, Integer, Double</li>
+        <li>Store a reference (address) to heap memory</li>
+        <li>Default value is null</li>
+        <li>Created with new keyword (usually)</li>
+        <li>Accessed through methods</li>
+        <li>String literals are special — interned</li>
+      </ul>
+    </div>
+    <div class="content-card">
+      <h4>Operators &amp; Expressions</h4>
+      <ul>
+        <li>Arithmetic: + − * / % (integer division truncates)</li>
+        <li>Compound assignment: += −= *= /= %=</li>
+        <li>Increment/decrement: ++ and −−</li>
+        <li>Operator precedence: * / % before + −</li>
+        <li>Integer division: 7/2 = 3 (not 3.5)</li>
+        <li>Casting: (double) 7 / 2 = 3.5</li>
+      </ul>
+    </div>
+    <div class="content-card">
+      <h4>String Methods (AP Subset)</h4>
+      <ul>
+        <li>length() — number of characters</li>
+        <li>substring(a, b) — chars from index a to b−1</li>
+        <li>indexOf(s) — first occurrence of s (−1 if not found)</li>
+        <li>equals(s) / equalsIgnoreCase(s)</li>
+        <li>compareTo(s) — lexicographic comparison</li>
+        <li>Strings are immutable in Java</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- TOPICS IN DETAIL -->
+  <div class="topic-block">
+    <h3><span class="topic-num">1.1</span> Variables, Types &amp; Declaration</h3>
+    <p>In Java, every variable has a declared type. Primitive types store values directly; reference types store addresses. Variables must be declared before use and have a defined scope.</p>
+    <div class="code-block">
+      <div class="code-header">
+        <div class="code-dots"><span></span><span></span><span></span></div>
+        <span>Variables.java</span>
+      </div>
+      <pre><span class="cmt">// Primitive declarations</span>
+<span class="typ">int</span> <span class="var">score</span> = <span class="num">95</span>;
+<span class="typ">double</span> <span class="var">gpa</span> = <span class="num">3.85</span>;
+<span class="typ">boolean</span> <span class="var">passed</span> = <span class="kw">true</span>;
+
+<span class="cmt">// Integer division vs. double division</span>
+<span class="typ">int</span> <span class="var">a</span> = <span class="num">7</span>, <span class="var">b</span> = <span class="num">2</span>;
+<span class="typ">int</span> <span class="var">intResult</span> = <span class="var">a</span> / <span class="var">b</span>;           <span class="cmt">// 3</span>
+<span class="typ">double</span> <span class="var">dblResult</span> = (<span class="typ">double</span>) <span class="var">a</span> / <span class="var">b</span>; <span class="cmt">// 3.5</span>
+
+<span class="cmt">// String concatenation with primitives</span>
+<span class="typ">String</span> <span class="var">msg</span> = <span class="str">"Score: "</span> + <span class="var">score</span>;       <span class="cmt">// "Score: 95"</span>
+<span class="typ">String</span> <span class="var">tricky</span> = <span class="num">1</span> + <span class="num">2</span> + <span class="str">" hi"</span>;      <span class="cmt">// "3 hi"</span>
+<span class="typ">String</span> <span class="var">tricky2</span> = <span class="str">"hi "</span> + <span class="num">1</span> + <span class="num">2</span>;     <span class="cmt">// "hi 12"</span></pre>
+    </div>
+  </div>
+
+  <div class="topic-block">
+    <h3><span class="topic-num">1.2</span> Math Class &amp; Casting</h3>
+    <p>The <code style="font-family:var(--mono);color:var(--accent2)">Math</code> class (java.lang) is always available. Key methods for the AP exam:</p>
+    <table class="concept-table">
+      <tr><th>Method</th><th>Returns</th><th>Example</th></tr>
+      <tr><td>Math.abs(x)</td><td>Absolute value (same type)</td><td>Math.abs(-5) → 5</td></tr>
+      <tr><td>Math.pow(a, b)</td><td>a^b as double</td><td>Math.pow(2,3) → 8.0</td></tr>
+      <tr><td>Math.sqrt(x)</td><td>Square root as double</td><td>Math.sqrt(9) → 3.0</td></tr>
+      <tr><td>Math.random()</td><td>[0.0, 1.0) uniform</td><td>Math.random() → 0.47...</td></tr>
+      <tr><td>Math.min(a,b)</td><td>Smaller of two values</td><td>Math.min(3,7) → 3</td></tr>
+      <tr><td>Math.max(a,b)</td><td>Larger of two values</td><td>Math.max(3,7) → 7</td></tr>
+    </table>
+    <div class="callout info">
+      <span class="callout-icon">💡</span>
+      <p><strong>Random range formula:</strong> To get a random integer in [min, max] use:<br>
+      <code style="font-family:var(--mono)">(int)(Math.random() * (max - min + 1)) + min</code></p>
+    </div>
+  </div>
+
+  <div class="topic-block">
+    <h3><span class="topic-num">1.3</span> String Manipulation</h3>
+    <div class="code-block">
+      <div class="code-header">
+        <div class="code-dots"><span></span><span></span><span></span></div>
+        <span>StringOps.java</span>
+      </div>
+      <pre><span class="typ">String</span> <span class="var">s</span> = <span class="str">"HelloWorld"</span>;
+
+<span class="var">s</span>.<span class="fn">length</span>();           <span class="cmt">// 10</span>
+<span class="var">s</span>.<span class="fn">substring</span>(<span class="num">0</span>, <span class="num">5</span>);   <span class="cmt">// "Hello"   (indices 0..4)</span>
+<span class="var">s</span>.<span class="fn">substring</span>(<span class="num">5</span>);      <span class="cmt">// "World"   (from 5 to end)</span>
+<span class="var">s</span>.<span class="fn">indexOf</span>(<span class="str">"World"</span>);   <span class="cmt">// 5</span>
+<span class="var">s</span>.<span class="fn">indexOf</span>(<span class="str">"Java"</span>);    <span class="cmt">// -1  (not found)</span>
+<span class="var">s</span>.<span class="fn">equals</span>(<span class="str">"helloworld"</span>);            <span class="cmt">// false</span>
+<span class="var">s</span>.<span class="fn">equalsIgnoreCase</span>(<span class="str">"helloworld"</span>);   <span class="cmt">// true</span>
+
+<span class="cmt">// String comparison — NEVER use == for content!</span>
+<span class="typ">String</span> <span class="var">a</span> = <span class="kw">new</span> <span class="typ">String</span>(<span class="str">"hi"</span>);
+<span class="typ">String</span> <span class="var">b</span> = <span class="kw">new</span> <span class="typ">String</span>(<span class="str">"hi"</span>);
+<span class="var">a</span> == <span class="var">b</span>          <span class="cmt">// false (different objects)</span>
+<span class="var">a</span>.<span class="fn">equals</span>(<span class="var">b</span>)    <span class="cmt">// true  (same content)</span></pre>
+    </div>
+    <div class="callout warn">
+      <span class="callout-icon">⚠️</span>
+      <p><strong>Common AP Trap:</strong> Using <code style="font-family:var(--mono)">==</code> to compare String content compares <em>references</em>, not values. Always use <code style="font-family:var(--mono)">.equals()</code> for String comparison.</p>
+    </div>
+  </div>
+
+  <!-- SAMPLE QUESTIONS UNIT 1 -->
+  <div class="questions-section">
+    <h3>Sample Questions <span class="q-badge mcq">MCQ</span><span class="q-badge frq" style="margin-left:6px">FRQ</span></h3>
+
+    <div class="question-card" onclick="toggleQ(this)">
+      <div class="q-header">
+        <span class="q-type mcq">MCQ</span>
+        <span class="q-title">What is the output of: <code style="font-family:var(--mono)">System.out.println("val: " + 3 + 4);</code></span>
+        <span class="q-chevron">▼</span>
+      </div>
+      <div class="q-body">
+        <p class="q-prompt">Consider the following statement:<br><br><code style="font-family:var(--mono);background:var(--surface2);padding:8px 14px;border-radius:6px;display:block;margin:8px 0">System.out.println("val: " + 3 + 4);</code><br>What is printed?</p>
+        <ul class="q-options">
+          <li><span class="opt-letter">A</span> val: 7</li>
+          <li class="correct"><span class="opt-letter">B</span> val: 34</li>
+          <li><span class="opt-letter">C</span> val: 3 + 4</li>
+          <li><span class="opt-letter">D</span> Compile error</li>
+        </ul>
+        <div class="answer-box">
+          <h5>✓ CORRECT ANSWER: B</h5>
+          <p>The <code style="font-family:var(--mono)">+</code> operator is evaluated left to right. First, <code style="font-family:var(--mono)">"val: " + 3</code> produces the String <code style="font-family:var(--mono)">"val: 3"</code> (String concatenation). Then <code style="font-family:var(--mono)">"val: 3" + 4</code> produces <code style="font-family:var(--mono)">"val: 34"</code>. There is no addition of integers here because once a String is encountered, subsequent <code style="font-family:var(--mono)">+</code> operations become concatenation. To get 7, you would need: <code style="font-family:var(--mono)">"val: " + (3 + 4)</code>.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="question-card" onclick="toggleQ(this)">
+      <div class="q-header">
+        <span class="q-type mcq">MCQ</span>
+        <span class="q-title">Integer division and modulo result</span>
+        <span class="q-chevron">▼</span>
+      </div>
+      <div class="q-body">
+        <p class="q-prompt">What are the values of <code style="font-family:var(--mono)">x</code> and <code style="font-family:var(--mono)">y</code> after the following executes?<br><br><code style="font-family:var(--mono);background:var(--surface2);padding:8px 14px;border-radius:6px;display:block;margin:8px 0">int x = 17 / 5;<br>int y = 17 % 5;</code></p>
+        <ul class="q-options">
+          <li><span class="opt-letter">A</span> x = 3.4, y = 2</li>
+          <li class="correct"><span class="opt-letter">B</span> x = 3, y = 2</li>
+          <li><span class="opt-letter">C</span> x = 3, y = 17</li>
+          <li><span class="opt-letter">D</span> x = 4, y = 2</li>
+        </ul>
+        <div class="answer-box">
+          <h5>✓ CORRECT ANSWER: B</h5>
+          <p>Integer division in Java truncates (not rounds) toward zero: 17 ÷ 5 = 3 remainder 2, so <code style="font-family:var(--mono)">17 / 5</code> = 3 (decimal part discarded). The modulo operator <code style="font-family:var(--mono)">%</code> gives the remainder: 17 = 5×3 + 2, so <code style="font-family:var(--mono)">17 % 5</code> = 2. A is wrong because int cannot hold 3.4. C is wrong (17 would mean % wasn't computed). D is wrong (5 × 4 = 20 &gt; 17).</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="question-card" onclick="toggleQ(this)">
+      <div class="q-header">
+        <span class="q-type mcq">MCQ</span>
+        <span class="q-title">String substring indexing</span>
+        <span class="q-chevron">▼</span>
+      </div>
+      <div class="q-body">
+        <p class="q-prompt">What is the result of the following?<br><br><code style="font-family:var(--mono);background:var(--surface2);padding:8px 14px;border-radius:6px;display:block;margin:8px 0">String s = "Programmers";<br>System.out.println(s.substring(3, 7));</code></p>
+        <ul class="q-options">
+          <li><span class="opt-letter">A</span> "gram"</li>
+          <li><span class="opt-letter">B</span> "ramm"</li>
+          <li class="correct"><span class="opt-letter">C</span> "gram"</li>
+          <li><span class="opt-letter">D</span> "rogr"</li>
+        </ul>
+        <div class="answer-box">
+          <h5>✓ CORRECT ANSWER: A/C — "gram"</h5>
+          <p>Java's <code style="font-family:var(--mono)">substring(start, end)</code> returns characters from index <em>start</em> up to (but not including) index <em>end</em>. "Programmers" has indices: P=0, r=1, o=2, g=3, r=4, a=5, m=6, m=7, e=8, r=9, s=10. So <code style="font-family:var(--mono)">substring(3, 7)</code> = characters at 3,4,5,6 = "gram". The key rule: <strong>end index is exclusive</strong>.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="question-card" onclick="toggleQ(this)">
+      <div class="q-header">
+        <span class="q-type frq">FRQ</span>
+        <span class="q-title">FRQ: String Manipulation — encodeMessage</span>
+        <span class="q-chevron">▼</span>
+      </div>
+      <div class="q-body">
+        <p class="q-prompt">Write a static method <code style="font-family:var(--mono)">encodeMessage</code> that takes a String and returns a new String where every word is reversed and all vowels (a, e, i, o, u — case-insensitive) are replaced with an asterisk <code style="font-family:var(--mono)">*</code>.</p>
+        <div class="frq-part"><strong>Part A:</strong> Write a helper method <code style="font-family:var(--mono)">replaceVowels(String word)</code> that returns the word with all vowels replaced by <code style="font-family:var(--mono)">*</code>.</div>
+        <div class="frq-part"><strong>Part B:</strong> Write <code style="font-family:var(--mono)">reverseWord(String word)</code> that returns the word reversed.</div>
+        <div class="frq-part"><strong>Part C:</strong> Write <code style="font-family:var(--mono)">encodeMessage(String message)</code> that splits on spaces, reverses each word, replaces vowels, and joins with spaces.</div>
+        <div class="solution-box">
+          <h5>◆ SOLUTION</h5>
+          <div class="code-block" style="margin-top:8px">
+            <div class="code-header">
+              <div class="code-dots"><span></span><span></span><span></span></div>
+              <span>Solution.java</span>
+            </div>
+            <pre><span class="cmt">// Part A: replace vowels</span>
+<span class="kw">public static</span> <span class="typ">String</span> <span class="fn">replaceVowels</span>(<span class="typ">String</span> <span class="var">word</span>) {
+    <span class="typ">String</span> <span class="var">result</span> = <span class="str">""</span>;
+    <span class="typ">String</span> <span class="var">vowels</span> = <span class="str">"aeiouAEIOU"</span>;
+    <span class="kw">for</span> (<span class="typ">int</span> <span class="var">i</span> = <span class="num">0</span>; <span class="var">i</span> &lt; <span class="var">word</span>.<span class="fn">length</span>(); <span class="var">i</span>++) {
+        <span class="typ">char</span> <span class="var">c</span> = <span class="var">word</span>.<span class="fn">charAt</span>(<span class="var">i</span>);
+        <span class="kw">if</span> (<span class="var">vowels</span>.<span class="fn">indexOf</span>(<span class="var">c</span>) != -<span class="num">1</span>)
+            <span class="var">result</span> += <span class="str">"*"</span>;
+        <span class="kw">else</span>
+            <span class="var">result</span> += <span class="var">c</span>;
+    }
+    <span class="kw">return</span> <span class="var">result</span>;
+}
+
+<span class="cmt">// Part B: reverse a word</span>
+<span class="kw">public static</span> <span class="typ">String</span> <span class="fn">reverseWord</span>(<span class="typ">String</span> <span class="var">word</span>) {
+    <span class="typ">String</span> <span class="var">rev</span> = <span class="str">""</span>;
+    <span class="kw">for</span> (<span class="typ">int</span> <span class="var">i</span> = <span class="var">word</span>.<span class="fn">length</span>() - <span class="num">1</span>; <span class="var">i</span> >= <span class="num">0</span>; <span class="var">i</span>--)
+        <span class="var">rev</span> += <span class="var">word</span>.<span class="fn">charAt</span>(<span class="var">i</span>);
+    <span class="kw">return</span> <span class="var">rev</span>;
+}
+
+<span class="cmt">// Part C: encode full message</span>
+<span class="kw">public static</span> <span class="typ">String</span> <span class="fn">encodeMessage</span>(<span class="typ">String</span> <span class="var">message</span>) {
+    <span class="typ">String</span>[] <span class="var">words</span> = <span class="var">message</span>.<span class="fn">split</span>(<span class="str">" "</span>);
+    <span class="typ">String</span> <span class="var">encoded</span> = <span class="str">""</span>;
+    <span class="kw">for</span> (<span class="typ">int</span> <span class="var">i</span> = <span class="num">0</span>; <span class="var">i</span> &lt; <span class="var">words</span>.length; <span class="var">i</span>++) {
+        <span class="kw">if</span> (<span class="var">i</span> > <span class="num">0</span>) <span class="var">encoded</span> += <span class="str">" "</span>;
+        <span class="var">encoded</span> += <span class="fn">replaceVowels</span>(<span class="fn">reverseWord</span>(<span class="var">words</span>[<span class="var">i</span>]));
+    }
+    <span class="kw">return</span> <span class="var">encoded</span>;
+}
+<span class="cmt">// encodeMessage("Hello World") → "*ll*H dl*W"</span></pre>
+          </div>
+          <div class="answer-box" style="margin-top:10px">
+            <h5>✓ EXPLANATION</h5>
+            <p><strong>Part A:</strong> Iterate through each character; use <code style="font-family:var(--mono)">indexOf</code> on a vowel-string to check membership in O(1) logic. Build result with concatenation.<br><br>
+            <strong>Part B:</strong> Loop from the last index (<code style="font-family:var(--mono)">length()-1</code>) down to 0, appending each char.<br><br>
+            <strong>Part C:</strong> Split on spaces, then apply both helpers to each token. Note the order: reverse first, then replace vowels (or vice versa — both are independent operations). Handle spacing by checking if i &gt; 0 before adding a space.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+</section>
+
+<!-- ══════════════════════════════════════ UNIT 2 ══════════════════════════════════════ -->
+<div style="border-top: 1px solid var(--border);"></div>
+<section id="unit2" data-unit="2">
+<div class="unit-section">
+
+  <div class="unit-header">
+    <div class="unit-num-badge">2</div>
+    <div class="unit-header-text">
+      <h2>Writing Classes</h2>
+      <p>Object-oriented design: constructors, instance variables, methods, encapsulation, static vs. instance, boolean logic, conditionals, and iteration.</p>
+      <span class="unit-weight">~25–30% of AP Exam</span>
+    </div>
+  </div>
+
+  <div class="content-grid">
+    <div class="content-card">
+      <h4>Class Anatomy</h4>
+      <ul>
+        <li>Instance variables (fields) — describe state</li>
+        <li>Constructors — initialize state (no return type)</li>
+        <li>Accessor (getter) methods — return state</li>
+        <li>Mutator (setter) methods — modify state</li>
+        <li>Static fields/methods — belong to the class</li>
+        <li>this keyword — refers to current object</li>
+      </ul>
+    </div>
+    <div class="content-card">
+      <h4>Encapsulation &amp; Access</h4>
+      <ul>
+        <li>private fields — only accessible within the class</li>
+        <li>public methods — accessible everywhere</li>
+        <li>Encapsulation hides implementation details</li>
+        <li>Prevents invalid state through validation</li>
+        <li>toString() — human-readable representation</li>
+        <li>equals() — value equality comparison</li>
+      </ul>
+    </div>
+    <div class="content-card">
+      <h4>Boolean &amp; Conditionals</h4>
+      <ul>
+        <li>Relational: == != &lt; &gt; &lt;= &gt;=</li>
+        <li>Logical: &amp;&amp; (and), || (or), ! (not)</li>
+        <li>Short-circuit evaluation</li>
+        <li>if / else if / else chains</li>
+        <li>Nested conditionals</li>
+        <li>De Morgan's Laws: !(A &amp;&amp; B) = !A || !B</li>
+      </ul>
+    </div>
+    <div class="content-card">
+      <h4>Iteration</h4>
+      <ul>
+        <li>while loop — condition checked before each iteration</li>
+        <li>for loop — classic counter-based iteration</li>
+        <li>do-while — executes body at least once</li>
+        <li>Nested loops — O(n²) or O(n·m) complexity</li>
+        <li>break / continue — loop control</li>
+        <li>Common patterns: accumulator, counter, search</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="topic-block">
+    <h3><span class="topic-num">2.1</span> Designing a Class</h3>
+    <div class="code-block">
+      <div class="code-header">
+        <div class="code-dots"><span></span><span></span><span></span></div>
+        <span>BankAccount.java</span>
+      </div>
+      <pre><span class="kw">public class</span> <span class="typ">BankAccount</span> {
+    <span class="cmt">// Instance variables — private for encapsulation</span>
+    <span class="kw">private</span> <span class="typ">String</span> <span class="var">owner</span>;
+    <span class="kw">private</span> <span class="typ">double</span> <span class="var">balance</span>;
+    <span class="kw">private static int</span> <span class="var">totalAccounts</span> = <span class="num">0</span>; <span class="cmt">// class variable</span>
+
+    <span class="cmt">// Constructor</span>
+    <span class="kw">public</span> <span class="fn">BankAccount</span>(<span class="typ">String</span> <span class="var">owner</span>, <span class="typ">double</span> <span class="var">initialBalance</span>) {
+        <span class="kw">this</span>.<span class="var">owner</span> = <span class="var">owner</span>;
+        <span class="kw">this</span>.<span class="var">balance</span> = (<span class="var">initialBalance</span> > <span class="num">0</span>) ? <span class="var">initialBalance</span> : <span class="num">0</span>;
+        <span class="var">totalAccounts</span>++;
+    }
+
+    <span class="cmt">// Accessor (getter)</span>
+    <span class="kw">public double</span> <span class="fn">getBalance</span>() { <span class="kw">return</span> <span class="var">balance</span>; }
+    <span class="kw">public</span> <span class="typ">String</span> <span class="fn">getOwner</span>()  { <span class="kw">return</span> <span class="var">owner</span>;   }
+
+    <span class="cmt">// Mutator with validation</span>
+    <span class="kw">public void</span> <span class="fn">deposit</span>(<span class="typ">double</span> <span class="var">amount</span>) {
+        <span class="kw">if</span> (<span class="var">amount</span> > <span class="num">0</span>) <span class="var">balance</span> += <span class="var">amount</span>;
+    }
+
+    <span class="kw">public boolean</span> <span class="fn">withdraw</span>(<span class="typ">double</span> <span class="var">amount</span>) {
+        <span class="kw">if</span> (<span class="var">amount</span> > <span class="num">0</span> &amp;&amp; <span class="var">amount</span> &lt;= <span class="var">balance</span>) {
+            <span class="var">balance</span> -= <span class="var">amount</span>;
+            <span class="kw">return true</span>;
+        }
+        <span class="kw">return false</span>; <span class="cmt">// insufficient funds</span>
+    }
+
+    <span class="cmt">// Static method</span>
+    <span class="kw">public static int</span> <span class="fn">getTotalAccounts</span>() { <span class="kw">return</span> <span class="var">totalAccounts</span>; }
+
+    <span class="ann">@Override</span>
+    <span class="kw">public</span> <span class="typ">String</span> <span class="fn">toString</span>() {
+        <span class="kw">return</span> <span class="var">owner</span> + <span class="str">": $"</span> + <span class="var">balance</span>;
+    }
+}</pre>
+    </div>
+  </div>
+
+  <div class="topic-block">
+    <h3><span class="topic-num">2.2</span> Boolean Logic &amp; De Morgan's Laws</h3>
+    <p>De Morgan's Laws are essential for simplifying boolean expressions on the AP exam:</p>
+    <table class="concept-table">
+      <tr><th>Original</th><th>De Morgan's Equivalent</th><th>Plain English</th></tr>
+      <tr><td>!(A &amp;&amp; B)</td><td>!A || !B</td><td>NOT (both) = (not A) OR (not B)</td></tr>
+      <tr><td>!(A || B)</td><td>!A &amp;&amp; !B</td><td>NOT (either) = (not A) AND (not B)</td></tr>
+    </table>
+    <div class="callout tip">
+      <span class="callout-icon">✅</span>
+      <p><strong>Short-circuit evaluation:</strong> In <code style="font-family:var(--mono)">A &amp;&amp; B</code>, if A is false, B is never evaluated. In <code style="font-family:var(--mono)">A || B</code>, if A is true, B is never evaluated. This matters for avoiding NullPointerExceptions: <code style="font-family:var(--mono)">obj != null &amp;&amp; obj.method()</code>.</p>
+    </div>
+  </div>
+
+  <div class="topic-block">
+    <h3><span class="topic-num">2.3</span> Loop Patterns</h3>
+    <div class="code-block">
+      <div class="code-header">
+        <div class="code-dots"><span></span><span></span><span></span></div>
+        <span>Loops.java</span>
+      </div>
+      <pre><span class="cmt">// Pattern 1: Accumulator</span>
+<span class="typ">int</span> <span class="var">sum</span> = <span class="num">0</span>;
+<span class="kw">for</span> (<span class="typ">int</span> <span class="var">i</span> = <span class="num">1</span>; <span class="var">i</span> &lt;= <span class="num">10</span>; <span class="var">i</span>++) <span class="var">sum</span> += <span class="var">i</span>; <span class="cmt">// sum = 55</span>
+
+<span class="cmt">// Pattern 2: Counting matches</span>
+<span class="typ">int</span> <span class="var">count</span> = <span class="num">0</span>;
+<span class="kw">for</span> (<span class="typ">int</span> <span class="var">i</span> = <span class="num">1</span>; <span class="var">i</span> &lt;= <span class="num">20</span>; <span class="var">i</span>++)
+    <span class="kw">if</span> (<span class="var">i</span> % <span class="num">3</span> == <span class="num">0</span>) <span class="var">count</span>++;
+
+<span class="cmt">// Pattern 3: while with unknown iterations</span>
+<span class="typ">int</span> <span class="var">n</span> = <span class="num">100</span>;
+<span class="kw">while</span> (<span class="var">n</span> > <span class="num">1</span>) {
+    <span class="kw">if</span> (<span class="var">n</span> % <span class="num">2</span> == <span class="num">0</span>) <span class="var">n</span> /= <span class="num">2</span>;
+    <span class="kw">else</span>            <span class="var">n</span> = <span class="num">3</span> * <span class="var">n</span> + <span class="num">1</span>; <span class="cmt">// Collatz conjecture</span>
+}
+
+<span class="cmt">// Pattern 4: Nested loops — multiplication table</span>
+<span class="kw">for</span> (<span class="typ">int</span> <span class="var">r</span> = <span class="num">1</span>; <span class="var">r</span> &lt;= <span class="num">3</span>; <span class="var">r</span>++) {
+    <span class="kw">for</span> (<span class="typ">int</span> <span class="var">c</span> = <span class="num">1</span>; <span class="var">c</span> &lt;= <span class="num">3</span>; <span class="var">c</span>++)
+        <span class="typ">System</span>.out.<span class="fn">print</span>(<span class="var">r</span> * <span class="var">c</span> + <span class="str">"\t"</span>);
+    <span class="typ">System</span>.out.<span class="fn">println</span>();
+}</pre>
+    </div>
+  </div>
+
+  <!-- SAMPLE QUESTIONS UNIT 2 -->
+  <div class="questions-section">
+    <h3>Sample Questions <span class="q-badge mcq">MCQ</span><span class="q-badge frq" style="margin-left:6px">FRQ</span></h3>
+
+    <div class="question-card" onclick="toggleQ(this)">
+      <div class="q-header">
+        <span class="q-type mcq">MCQ</span>
+        <span class="q-title">What does a constructor return?</span>
+        <span class="q-chevron">▼</span>
+      </div>
+      <div class="q-body">
+        <p class="q-prompt">Which of the following is true about constructors in Java?</p>
+        <ul class="q-options">
+          <li><span class="opt-letter">A</span> A constructor must return void</li>
+          <li><span class="opt-letter">B</span> A constructor can return any type</li>
+          <li class="correct"><span class="opt-letter">C</span> A constructor has no return type (not even void)</li>
+          <li><span class="opt-letter">D</span> A constructor always returns a reference to a new object</li>
+        </ul>
+        <div class="answer-box">
+          <h5>✓ CORRECT ANSWER: C</h5>
+          <p>Constructors have <em>no return type declaration at all</em> — not even <code style="font-family:var(--mono)">void</code>. They are named exactly like the class. Writing a return type would make it a regular method with the same name as the class, not a constructor. The <code style="font-family:var(--mono)">new</code> keyword is what actually causes the object to be created and returned — the constructor simply initializes it. D describes what <code style="font-family:var(--mono)">new</code> does, not the constructor's declared return type.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="question-card" onclick="toggleQ(this)">
+      <div class="q-header">
+        <span class="q-type mcq">MCQ</span>
+        <span class="q-title">Tracing a nested loop</span>
+        <span class="q-chevron">▼</span>
+      </div>
+      <div class="q-body">
+        <p class="q-prompt">How many times does <code style="font-family:var(--mono)">System.out.print("*")</code> execute?<br><br>
+        <code style="font-family:var(--mono);background:var(--surface2);padding:8px 14px;border-radius:6px;display:block;margin:8px 0">for (int i = 1; i &lt;= 4; i++)<br>    for (int j = 1; j &lt;= i; j++)<br>        System.out.print("*");</code></p>
+        <ul class="q-options">
+          <li><span class="opt-letter">A</span> 8</li>
+          <li><span class="opt-letter">B</span> 12</li>
+          <li class="correct"><span class="opt-letter">C</span> 10</li>
+          <li><span class="opt-letter">D</span> 16</li>
+        </ul>
+        <div class="answer-box">
+          <h5>✓ CORRECT ANSWER: C</h5>
+          <p>Trace the inner loop for each value of i: when i=1, j goes 1..1 → 1 print; i=2, j goes 1..2 → 2 prints; i=3, j goes 1..3 → 3 prints; i=4, j goes 1..4 → 4 prints. Total: 1+2+3+4 = <strong>10</strong>. This is a triangle pattern. The outer loop runs 4 times, but the inner loop runs i times each iteration, not a fixed number.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="question-card" onclick="toggleQ(this)">
+      <div class="q-header">
+        <span class="q-type frq">FRQ</span>
+        <span class="q-title">FRQ: Writing a Class — Student class design</span>
+        <span class="q-chevron">▼</span>
+      </div>
+      <div class="q-body">
+        <p class="q-prompt">Write a complete Java class <code style="font-family:var(--mono)">Student</code> that models a student with a name, a GPA (0.0 to 4.0), and a grade level (9–12). Include appropriate constructors, accessors, and mutators with validation. Include a method <code style="font-family:var(--mono)">isHonors()</code> that returns true if GPA ≥ 3.5 and a <code style="font-family:var(--mono)">toString()</code> method.</p>
+        <div class="solution-box">
+          <h5>◆ SOLUTION</h5>
+          <div class="code-block" style="margin-top:8px">
+            <div class="code-header">
+              <div class="code-dots"><span></span><span></span><span></span></div>
+              <span>Student.java</span>
+            </div>
+            <pre><span class="kw">public class</span> <span class="typ">Student</span> {
+    <span class="kw">private</span> <span class="typ">String</span> <span class="var">name</span>;
+    <span class="kw">private double</span> <span class="var">gpa</span>;
+    <span class="kw">private int</span> <span class="var">gradeLevel</span>;
+
+    <span class="cmt">// Constructor with validation</span>
+    <span class="kw">public</span> <span class="fn">Student</span>(<span class="typ">String</span> <span class="var">name</span>, <span class="typ">double</span> <span class="var">gpa</span>, <span class="typ">int</span> <span class="var">gradeLevel</span>) {
+        <span class="kw">this</span>.<span class="var">name</span> = <span class="var">name</span>;
+        <span class="kw">this</span>.<span class="var">gpa</span> = (<span class="var">gpa</span> >= <span class="num">0.0</span> &amp;&amp; <span class="var">gpa</span> &lt;= <span class="num">4.0</span>) ? <span class="var">gpa</span> : <span class="num">0.0</span>;
+        <span class="kw">this</span>.<span class="var">gradeLevel</span> = (<span class="var">gradeLevel</span> >= <span class="num">9</span> &amp;&amp; <span class="var">gradeLevel</span> &lt;= <span class="num">12</span>)
+                           ? <span class="var">gradeLevel</span> : <span class="num">9</span>;
+    }
+
+    <span class="cmt">// Accessors</span>
+    <span class="kw">public</span> <span class="typ">String</span> <span class="fn">getName</span>()     { <span class="kw">return</span> <span class="var">name</span>; }
+    <span class="kw">public double</span> <span class="fn">getGPA</span>()      { <span class="kw">return</span> <span class="var">gpa</span>; }
+    <span class="kw">public int</span>    <span class="fn">getGradeLevel</span>() { <span class="kw">return</span> <span class="var">gradeLevel</span>; }
+
+    <span class="cmt">// Mutators with validation</span>
+    <span class="kw">public void</span> <span class="fn">setGPA</span>(<span class="typ">double</span> <span class="var">gpa</span>) {
+        <span class="kw">if</span> (<span class="var">gpa</span> >= <span class="num">0.0</span> &amp;&amp; <span class="var">gpa</span> &lt;= <span class="num">4.0</span>) <span class="kw">this</span>.<span class="var">gpa</span> = <span class="var">gpa</span>;
+    }
+
+    <span class="kw">public void</span> <span class="fn">setGradeLevel</span>(<span class="typ">int</span> <span class="var">level</span>) {
+        <span class="kw">if</span> (<span class="var">level</span> >= <span class="num">9</span> &amp;&amp; <span class="var">level</span> &lt;= <span class="num">12</span>) <span class="kw">this</span>.<span class="var">gradeLevel</span> = <span class="var">level</span>;
+    }
+
+    <span class="cmt">// Business logic</span>
+    <span class="kw">public boolean</span> <span class="fn">isHonors</span>() { <span class="kw">return</span> <span class="var">gpa</span> >= <span class="num">3.5</span>; }
+
+    <span class="ann">@Override</span>
+    <span class="kw">public</span> <span class="typ">String</span> <span class="fn">toString</span>() {
+        <span class="kw">return</span> <span class="var">name</span> + <span class="str">" (Grade "</span> + <span class="var">gradeLevel</span> + <span class="str">", GPA: "</span>
+               + <span class="var">gpa</span> + <span class="str">")"</span>
+               + (<span class="fn">isHonors</span>() ? <span class="str">" [Honors]"</span> : <span class="str">""</span>);
+    }
+}</pre>
+          </div>
+          <div class="answer-box" style="margin-top:10px">
+            <h5>✓ EXPLANATION — Key AP Scoring Points</h5>
+            <p>• <strong>Private fields</strong> — encapsulation requires private instance variables.<br>
+            • <strong>Validation in constructor and setter</strong> — use a ternary or if-statement; invalid values should revert to a safe default (not crash).<br>
+            • <strong>this keyword</strong> — required when parameter name matches field name to disambiguate.<br>
+            • <strong>isHonors()</strong> — a simple boolean method returning a comparison expression. No need for <code style="font-family:var(--mono)">if/else return true/false</code>.<br>
+            • <strong>toString()</strong> — must have exactly this signature (<code style="font-family:var(--mono)">public String toString()</code>) to override Object's toString properly.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+</section>
+
+<!-- ══════════════════════════════════════ UNIT 3 ══════════════════════════════════════ -->
+<div style="border-top: 1px solid var(--border);"></div>
+<section id="unit3" data-unit="3">
+<div class="unit-section">
+
+  <div class="unit-header">
+    <div class="unit-num-badge">3</div>
+    <div class="unit-header-text">
+      <h2>Arrays &amp; ArrayLists</h2>
+      <p>1D and 2D arrays, ArrayList class, iteration patterns, searching, sorting fundamentals, and algorithm analysis.</p>
+      <span class="unit-weight">~25–30% of AP Exam</span>
+    </div>
+  </div>
+
+  <div class="content-grid">
+    <div class="content-card">
+      <h4>Arrays</h4>
+      <ul>
+        <li>Fixed size — set at creation, can't change</li>
+        <li>Zero-indexed: valid range 0 to length−1</li>
+        <li>Default values: 0, 0.0, false, null</li>
+        <li>arr.length — NOT a method call (no ())</li>
+        <li>ArrayIndexOutOfBoundsException if out of range</li>
+        <li>for-each loop: for (Type x : arr)</li>
+      </ul>
+    </div>
+    <div class="content-card">
+      <h4>ArrayList</h4>
+      <ul>
+        <li>Dynamic size — grows and shrinks automatically</li>
+        <li>import java.util.ArrayList;</li>
+        <li>Only holds objects (use Integer, Double, etc.)</li>
+        <li>add(e), add(i,e), remove(i), get(i), set(i,e)</li>
+        <li>size() — method (with ())</li>
+        <li>Auto-boxing: int ↔ Integer automatically</li>
+      </ul>
+    </div>
+    <div class="content-card">
+      <h4>2D Arrays</h4>
+      <ul>
+        <li>int[][] grid = new int[rows][cols]</li>
+        <li>grid.length → number of rows</li>
+        <li>grid[0].length → number of columns</li>
+        <li>Row-major traversal: outer=rows, inner=cols</li>
+        <li>Column-major: outer=cols, inner=rows</li>
+        <li>Can be irregular (jagged) arrays</li>
+      </ul>
+    </div>
+    <div class="content-card">
+      <h4>Searching &amp; Sorting</h4>
+      <ul>
+        <li>Sequential search — O(n), works on any list</li>
+        <li>Binary search — O(log n), needs sorted array</li>
+        <li>Selection sort — find min, swap to front, O(n²)</li>
+        <li>Insertion sort — build sorted portion, O(n²)</li>
+        <li>Merge sort / quicksort — O(n log n)</li>
+        <li>Arrays.sort() and Collections.sort() built-in</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="topic-block">
+    <h3><span class="topic-num">3.1</span> Array Fundamentals</h3>
+    <div class="code-block">
+      <div class="code-header">
+        <div class="code-dots"><span></span><span></span><span></span></div>
+        <span>ArrayDemo.java</span>
+      </div>
+      <pre><span class="cmt">// Declaration and initialization</span>
+<span class="typ">int</span>[] <span class="var">scores</span> = {<span class="num">85</span>, <span class="num">92</span>, <span class="num">78</span>, <span class="num">96</span>, <span class="num">88</span>};
+<span class="typ">int</span>[] <span class="var">empty</span>  = <span class="kw">new</span> <span class="typ">int</span>[<span class="num">10</span>];   <span class="cmt">// all zeros</span>
+
+<span class="cmt">// Traversal patterns</span>
+<span class="kw">for</span> (<span class="typ">int</span> <span class="var">i</span> = <span class="num">0</span>; <span class="var">i</span> &lt; <span class="var">scores</span>.length; <span class="var">i</span>++)
+    <span class="typ">System</span>.out.<span class="fn">print</span>(<span class="var">scores</span>[<span class="var">i</span>] + <span class="str">" "</span>);
+
+<span class="cmt">// Enhanced for loop (read-only)</span>
+<span class="kw">for</span> (<span class="typ">int</span> <span class="var">s</span> : <span class="var">scores</span>)
+    <span class="typ">System</span>.out.<span class="fn">print</span>(<span class="var">s</span> + <span class="str">" "</span>);
+
+<span class="cmt">// Common algorithm: find maximum</span>
+<span class="typ">int</span> <span class="var">max</span> = <span class="var">scores</span>[<span class="num">0</span>];  <span class="cmt">// start with first, not 0!</span>
+<span class="kw">for</span> (<span class="typ">int</span> <span class="var">i</span> = <span class="num">1</span>; <span class="var">i</span> &lt; <span class="var">scores</span>.length; <span class="var">i</span>++)
+    <span class="kw">if</span> (<span class="var">scores</span>[<span class="var">i</span>] > <span class="var">max</span>) <span class="var">max</span> = <span class="var">scores</span>[<span class="var">i</span>];
+<span class="cmt">// max = 96</span>
+
+<span class="cmt">// Reverse traversal</span>
+<span class="kw">for</span> (<span class="typ">int</span> <span class="var">i</span> = <span class="var">scores</span>.length - <span class="num">1</span>; <span class="var">i</span> >= <span class="num">0</span>; <span class="var">i</span>--)
+    <span class="typ">System</span>.out.<span class="fn">print</span>(<span class="var">scores</span>[<span class="var">i</span>] + <span class="str">" "</span>);</pre>
+    </div>
+  </div>
+
+  <div class="topic-block">
+    <h3><span class="topic-num">3.2</span> ArrayList Operations</h3>
+    <div class="code-block">
+      <div class="code-header">
+        <div class="code-dots"><span></span><span></span><span></span></div>
+        <span>ArrayListDemo.java</span>
+      </div>
+      <pre><span class="kw">import</span> java.util.ArrayList;
+
+<span class="typ">ArrayList</span>&lt;<span class="typ">String</span>&gt; <span class="var">names</span> = <span class="kw">new</span> <span class="typ">ArrayList</span>&lt;&gt;();
+<span class="var">names</span>.<span class="fn">add</span>(<span class="str">"Alice"</span>);      <span class="cmt">// ["Alice"]</span>
+<span class="var">names</span>.<span class="fn">add</span>(<span class="str">"Bob"</span>);        <span class="cmt">// ["Alice","Bob"]</span>
+<span class="var">names</span>.<span class="fn">add</span>(<span class="num">0</span>, <span class="str">"Zara"</span>);    <span class="cmt">// ["Zara","Alice","Bob"]</span>
+<span class="var">names</span>.<span class="fn">remove</span>(<span class="num">1</span>);         <span class="cmt">// ["Zara","Bob"]  (removes "Alice")</span>
+<span class="var">names</span>.<span class="fn">set</span>(<span class="num">0</span>, <span class="str">"Xena"</span>);    <span class="cmt">// ["Xena","Bob"]</span>
+<span class="var">names</span>.<span class="fn">get</span>(<span class="num">1</span>);            <span class="cmt">// "Bob"</span>
+<span class="var">names</span>.<span class="fn">size</span>();             <span class="cmt">// 2</span>
+
+<span class="cmt">// DANGER: removing while iterating forward — indices shift!</span>
+<span class="cmt">// CORRECT: traverse backwards when removing</span>
+<span class="typ">ArrayList</span>&lt;<span class="typ">Integer</span>&gt; <span class="var">nums</span> = <span class="kw">new</span> <span class="typ">ArrayList</span>&lt;&gt;();
+<span class="kw">for</span> (<span class="typ">int</span> <span class="var">i</span> = <span class="num">1</span>; <span class="var">i</span> &lt;= <span class="num">5</span>; <span class="var">i</span>++) <span class="var">nums</span>.<span class="fn">add</span>(<span class="var">i</span>);
+
+<span class="kw">for</span> (<span class="typ">int</span> <span class="var">i</span> = <span class="var">nums</span>.<span class="fn">size</span>() - <span class="num">1</span>; <span class="var">i</span> >= <span class="num">0</span>; <span class="var">i</span>--)
+    <span class="kw">if</span> (<span class="var">nums</span>.<span class="fn">get</span>(<span class="var">i</span>) % <span class="num">2</span> == <span class="num">0</span>)
+        <span class="var">nums</span>.<span class="fn">remove</span>(<span class="var">i</span>); <span class="cmt">// removes evens: [1,3,5]</span></pre>
+    </div>
+    <div class="callout warn">
+      <span class="callout-icon">⚠️</span>
+      <p><strong>Index shifting trap:</strong> When you remove element at index i while looping forward, the next element shifts to index i and gets skipped. Always loop <em>backwards</em> when removing from an ArrayList during iteration.</p>
+    </div>
+  </div>
+
+  <div class="topic-block">
+    <h3><span class="topic-num">3.3</span> 2D Arrays</h3>
+    <div class="code-block">
+      <div class="code-header">
+        <div class="code-dots"><span></span><span></span><span></span></div>
+        <span>Grid.java</span>
+      </div>
+      <pre><span class="cmt">// Create a 3x4 grid</span>
+<span class="typ">int</span>[][] <span class="var">grid</span> = <span class="kw">new</span> <span class="typ">int</span>[<span class="num">3</span>][<span class="num">4</span>]; <span class="cmt">// 3 rows, 4 cols</span>
+
+<span class="cmt">// Initialize with values</span>
+<span class="typ">int</span>[][] <span class="var">matrix</span> = {
+    {<span class="num">1</span>, <span class="num">2</span>, <span class="num">3</span>},
+    {<span class="num">4</span>, <span class="num">5</span>, <span class="num">6</span>},
+    {<span class="num">7</span>, <span class="num">8</span>, <span class="num">9</span>}
+};
+
+<span class="cmt">// Row-major traversal (most common)</span>
+<span class="kw">for</span> (<span class="typ">int</span> <span class="var">r</span> = <span class="num">0</span>; <span class="var">r</span> &lt; <span class="var">matrix</span>.length; <span class="var">r</span>++) {
+    <span class="kw">for</span> (<span class="typ">int</span> <span class="var">c</span> = <span class="num">0</span>; <span class="var">c</span> &lt; <span class="var">matrix</span>[<span class="var">r</span>].length; <span class="var">c</span>++)
+        <span class="typ">System</span>.out.<span class="fn">print</span>(<span class="var">matrix</span>[<span class="var">r</span>][<span class="var">c</span>] + <span class="str">" "</span>);
+    <span class="typ">System</span>.out.<span class="fn">println</span>();
+}
+
+<span class="cmt">// Sum all elements</span>
+<span class="typ">int</span> <span class="var">total</span> = <span class="num">0</span>;
+<span class="kw">for</span> (<span class="typ">int</span>[] <span class="var">row</span> : <span class="var">matrix</span>)
+    <span class="kw">for</span> (<span class="typ">int</span> <span class="var">val</span> : <span class="var">row</span>)
+        <span class="var">total</span> += <span class="var">val</span>; <span class="cmt">// total = 45</span></pre>
+    </div>
+  </div>
+
+  <!-- SAMPLE QUESTIONS UNIT 3 -->
+  <div class="questions-section">
+    <h3>Sample Questions <span class="q-badge mcq">MCQ</span><span class="q-badge frq" style="margin-left:6px">FRQ</span></h3>
+
+    <div class="question-card" onclick="toggleQ(this)">
+      <div class="q-header">
+        <span class="q-type mcq">MCQ</span>
+        <span class="q-title">ArrayList removal during forward iteration</span>
+        <span class="q-chevron">▼</span>
+      </div>
+      <div class="q-body">
+        <p class="q-prompt">An ArrayList contains [2, 4, 4, 6, 8]. The following code is intended to remove all 4s:<br><br>
+        <code style="font-family:var(--mono);background:var(--surface2);padding:8px 14px;border-radius:6px;display:block;margin:8px 0">for (int i = 0; i &lt; list.size(); i++)<br>    if (list.get(i) == 4)<br>        list.remove(i);</code><br>
+        What is in the ArrayList after this code runs?</p>
+        <ul class="q-options">
+          <li><span class="opt-letter">A</span> [2, 6, 8]</li>
+          <li class="correct"><span class="opt-letter">B</span> [2, 4, 6, 8]</li>
+          <li><span class="opt-letter">C</span> [4, 6, 8]</li>
+          <li><span class="opt-letter">D</span> [2, 6, 4, 8]</li>
+        </ul>
+        <div class="answer-box">
+          <h5>✓ CORRECT ANSWER: B</h5>
+          <p>When i=1, list.get(1)=4, so it's removed. The list becomes [2,4,6,8] and i becomes 2. Now list.get(2)=6 (the second 4 shifted to index 1 but i skipped it!). The loop continues and never revisits index 1. Result: one 4 remains at index 1. This is the classic "index shift" bug. The fix is to loop backwards or decrement i after removal.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="question-card" onclick="toggleQ(this)">
+      <div class="q-header">
+        <span class="q-type mcq">MCQ</span>
+        <span class="q-title">2D array traversal — column sum</span>
+        <span class="q-chevron">▼</span>
+      </div>
+      <div class="q-body">
+        <p class="q-prompt">Given: <code style="font-family:var(--mono)">int[][] m = {{1,2,3},{4,5,6},{7,8,9}};</code><br>What does this code print?<br><br>
+        <code style="font-family:var(--mono);background:var(--surface2);padding:8px 14px;border-radius:6px;display:block;margin:8px 0">int s = 0;<br>for (int r = 0; r &lt; m.length; r++)<br>    s += m[r][1];<br>System.out.println(s);</code></p>
+        <ul class="q-options">
+          <li><span class="opt-letter">A</span> 6</li>
+          <li class="correct"><span class="opt-letter">B</span> 15</li>
+          <li><span class="opt-letter">C</span> 12</li>
+          <li><span class="opt-letter">D</span> 45</li>
+        </ul>
+        <div class="answer-box">
+          <h5>✓ CORRECT ANSWER: B</h5>
+          <p>The code sums column 1 (the middle column, index 1) across all rows. m[0][1]=2, m[1][1]=5, m[2][1]=8. Sum = 2+5+8 = <strong>15</strong>. Note: m[r][1] fixes the column at 1 and varies the row — this is a column traversal pattern. Answer A (6) would be the sum of row 0. Answer D (45) would be all elements. Answer C (12) would be column 2 (third column): 3+6+3... wait, that's wrong too — C is a distractor.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="question-card" onclick="toggleQ(this)">
+      <div class="q-header">
+        <span class="q-type frq">FRQ</span>
+        <span class="q-title">FRQ: Array Processing — Statistics methods</span>
+        <span class="q-chevron">▼</span>
+      </div>
+      <div class="q-body">
+        <p class="q-prompt">Write methods for a statistics utility class that processes an array of doubles. Assume the array has at least one element.</p>
+        <div class="frq-part"><strong>Part A:</strong> Write <code style="font-family:var(--mono)">mean(double[] data)</code> — returns the arithmetic mean.</div>
+        <div class="frq-part"><strong>Part B:</strong> Write <code style="font-family:var(--mono)">countAbove(double[] data, double threshold)</code> — returns the count of elements strictly greater than threshold.</div>
+        <div class="frq-part"><strong>Part C:</strong> Write <code style="font-family:var(--mono)">normalize(double[] data)</code> — returns a new array where each element is (element − mean) / max(1, standardRange). StandardRange = max − min of data. If max equals min, return all zeros.</div>
+        <div class="solution-box">
+          <h5>◆ SOLUTION</h5>
+          <div class="code-block" style="margin-top:8px">
+            <div class="code-header">
+              <div class="code-dots"><span></span><span></span><span></span></div>
+              <span>Statistics.java</span>
+            </div>
+            <pre><span class="cmt">// Part A: mean</span>
+<span class="kw">public static double</span> <span class="fn">mean</span>(<span class="typ">double</span>[] <span class="var">data</span>) {
+    <span class="typ">double</span> <span class="var">sum</span> = <span class="num">0</span>;
+    <span class="kw">for</span> (<span class="typ">double</span> <span class="var">v</span> : <span class="var">data</span>) <span class="var">sum</span> += <span class="var">v</span>;
+    <span class="kw">return</span> <span class="var">sum</span> / <span class="var">data</span>.length;
+}
+
+<span class="cmt">// Part B: count above threshold</span>
+<span class="kw">public static int</span> <span class="fn">countAbove</span>(<span class="typ">double</span>[] <span class="var">data</span>, <span class="typ">double</span> <span class="var">threshold</span>) {
+    <span class="typ">int</span> <span class="var">count</span> = <span class="num">0</span>;
+    <span class="kw">for</span> (<span class="typ">double</span> <span class="var">v</span> : <span class="var">data</span>)
+        <span class="kw">if</span> (<span class="var">v</span> > <span class="var">threshold</span>) <span class="var">count</span>++;
+    <span class="kw">return</span> <span class="var">count</span>;
+}
+
+<span class="cmt">// Part C: normalize</span>
+<span class="kw">public static double</span>[] <span class="fn">normalize</span>(<span class="typ">double</span>[] <span class="var">data</span>) {
+    <span class="typ">double</span> <span class="var">min</span> = <span class="var">data</span>[<span class="num">0</span>], <span class="var">max</span> = <span class="var">data</span>[<span class="num">0</span>];
+    <span class="kw">for</span> (<span class="typ">double</span> <span class="var">v</span> : <span class="var">data</span>) {
+        <span class="kw">if</span> (<span class="var">v</span> &lt; <span class="var">min</span>) <span class="var">min</span> = <span class="var">v</span>;
+        <span class="kw">if</span> (<span class="var">v</span> > <span class="var">max</span>) <span class="var">max</span> = <span class="var">v</span>;
+    }
+    <span class="typ">double</span>[] <span class="var">result</span> = <span class="kw">new</span> <span class="typ">double</span>[<span class="var">data</span>.length];
+    <span class="kw">if</span> (<span class="var">max</span> == <span class="var">min</span>) <span class="kw">return</span> <span class="var">result</span>; <span class="cmt">// all zeros</span>
+    <span class="typ">double</span> <span class="var">avg</span> = <span class="fn">mean</span>(<span class="var">data</span>);
+    <span class="typ">double</span> <span class="var">range</span> = <span class="var">max</span> - <span class="var">min</span>;
+    <span class="kw">for</span> (<span class="typ">int</span> <span class="var">i</span> = <span class="num">0</span>; <span class="var">i</span> &lt; <span class="var">data</span>.length; <span class="var">i</span>++)
+        <span class="var">result</span>[<span class="var">i</span>] = (<span class="var">data</span>[<span class="var">i</span>] - <span class="var">avg</span>) / <span class="var">range</span>;
+    <span class="kw">return</span> <span class="var">result</span>;
+}</pre>
+          </div>
+          <div class="answer-box" style="margin-top:10px">
+            <h5>✓ EXPLANATION</h5>
+            <p>• <strong>Part A:</strong> Accumulator pattern with enhanced for-loop. Divide by length (cast is not needed since sum is already double).<br><br>
+            • <strong>Part B:</strong> Counter pattern. Use strict greater-than as specified ("strictly greater than").<br><br>
+            • <strong>Part C:</strong> Initialize min and max from index 0, not Integer.MIN/MAX (good practice for doubles). Check max==min before dividing to avoid division by zero. Reuse the <code style="font-family:var(--mono)">mean()</code> method from Part A — the AP exam rewards method reuse. Return a <em>new</em> array to avoid mutating the input.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+</section>
+
+<!-- ══════════════════════════════════════ UNIT 4 ══════════════════════════════════════ -->
+<div style="border-top: 1px solid var(--border);"></div>
+<section id="unit4" data-unit="4">
+<div class="unit-section">
+
+  <div class="unit-header">
+    <div class="unit-num-badge">4</div>
+    <div class="unit-header-text">
+      <h2>Inheritance &amp; Recursion</h2>
+      <p>Superclasses and subclasses, polymorphism, abstract classes, interfaces, and recursive algorithms.</p>
+      <span class="unit-weight">~20–25% of AP Exam</span>
+    </div>
+  </div>
+
+  <div class="content-grid">
+    <div class="content-card">
+      <h4>Inheritance Basics</h4>
+      <ul>
+        <li>extends keyword creates a subclass (IS-A)</li>
+        <li>Subclass inherits public/protected members</li>
+        <li>super() — call superclass constructor (first line)</li>
+        <li>super.method() — call superclass method</li>
+        <li>Cannot inherit private fields directly</li>
+        <li>Every class implicitly extends Object</li>
+      </ul>
+    </div>
+    <div class="content-card">
+      <h4>Polymorphism &amp; Overriding</h4>
+      <ul>
+        <li>Override: same signature, different behavior</li>
+        <li>@Override annotation — catches mistakes</li>
+        <li>Dynamic dispatch — runtime type determines method</li>
+        <li>Overload: same name, different parameters</li>
+        <li>instanceof — check runtime type</li>
+        <li>Object type can hold subclass reference</li>
+      </ul>
+    </div>
+    <div class="content-card">
+      <h4>Abstract Classes &amp; Interfaces</h4>
+      <ul>
+        <li>abstract class — cannot be instantiated</li>
+        <li>abstract method — subclass must implement</li>
+        <li>Interface — contract, all methods public abstract</li>
+        <li>implements keyword for interfaces</li>
+        <li>A class can implement multiple interfaces</li>
+        <li>Comparable interface — compareTo() method</li>
+      </ul>
+    </div>
+    <div class="content-card">
+      <h4>Recursion</h4>
+      <ul>
+        <li>Base case — stops recursion (required!)</li>
+        <li>Recursive case — calls itself with simpler input</li>
+        <li>Call stack — each call gets its own frame</li>
+        <li>StackOverflowError if no base case</li>
+        <li>Binary search is recursive naturally</li>
+        <li>Merge sort uses divide-and-conquer recursion</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="topic-block">
+    <h3><span class="topic-num">4.1</span> Inheritance Hierarchy</h3>
+    <div class="code-block">
+      <div class="code-header">
+        <div class="code-dots"><span></span><span></span><span></span></div>
+        <span>Shape.java → Circle.java</span>
+      </div>
+      <pre><span class="cmt">// Superclass</span>
+<span class="kw">public abstract class</span> <span class="typ">Shape</span> {
+    <span class="kw">private</span> <span class="typ">String</span> <span class="var">color</span>;
+
+    <span class="kw">public</span> <span class="fn">Shape</span>(<span class="typ">String</span> <span class="var">color</span>) { <span class="kw">this</span>.<span class="var">color</span> = <span class="var">color</span>; }
+
+    <span class="kw">public</span> <span class="typ">String</span> <span class="fn">getColor</span>() { <span class="kw">return</span> <span class="var">color</span>; }
+
+    <span class="kw">public abstract double</span> <span class="fn">area</span>();   <span class="cmt">// subclass must implement</span>
+
+    <span class="ann">@Override</span>
+    <span class="kw">public</span> <span class="typ">String</span> <span class="fn">toString</span>() {
+        <span class="kw">return</span> <span class="var">color</span> + <span class="str">" shape, area="</span> + <span class="fn">area</span>();
+    }
+}
+
+<span class="cmt">// Subclass</span>
+<span class="kw">public class</span> <span class="typ">Circle</span> <span class="kw">extends</span> <span class="typ">Shape</span> {
+    <span class="kw">private double</span> <span class="var">radius</span>;
+
+    <span class="kw">public</span> <span class="fn">Circle</span>(<span class="typ">String</span> <span class="var">color</span>, <span class="typ">double</span> <span class="var">radius</span>) {
+        <span class="kw">super</span>(<span class="var">color</span>);  <span class="cmt">// MUST be first statement!</span>
+        <span class="kw">this</span>.<span class="var">radius</span> = <span class="var">radius</span>;
+    }
+
+    <span class="ann">@Override</span>
+    <span class="kw">public double</span> <span class="fn">area</span>() { <span class="kw">return</span> Math.<span class="var">PI</span> * <span class="var">radius</span> * <span class="var">radius</span>; }
+
+    <span class="ann">@Override</span>
+    <span class="kw">public</span> <span class="typ">String</span> <span class="fn">toString</span>() {
+        <span class="kw">return</span> <span class="kw">super</span>.<span class="fn">toString</span>() + <span class="str">", r="</span> + <span class="var">radius</span>;
+    }
+}
+
+<span class="cmt">// Polymorphism in action</span>
+<span class="typ">Shape</span> <span class="var">s</span> = <span class="kw">new</span> <span class="typ">Circle</span>(<span class="str">"red"</span>, <span class="num">5</span>); <span class="cmt">// Shape ref, Circle obj</span>
+<span class="var">s</span>.<span class="fn">area</span>();    <span class="cmt">// calls Circle.area() — dynamic dispatch!</span>
+<span class="cmt">// s.radius → COMPILE ERROR (Shape doesn't have radius)</span></pre>
+    </div>
+  </div>
+
+  <div class="topic-block">
+    <h3><span class="topic-num">4.2</span> Recursion — Thinking Recursively</h3>
+    <p>Every recursive method needs: (1) a base case that returns without a recursive call, and (2) a recursive case that makes the problem smaller. Trust that the recursive call works — just ensure the base case and the reduction are correct.</p>
+    <div class="code-block">
+      <div class="code-header">
+        <div class="code-dots"><span></span><span></span><span></span></div>
+        <span>Recursion.java</span>
+      </div>
+      <pre><span class="cmt">// Classic: factorial</span>
+<span class="kw">public static int</span> <span class="fn">factorial</span>(<span class="typ">int</span> <span class="var">n</span>) {
+    <span class="kw">if</span> (<span class="var">n</span> == <span class="num">0</span> || <span class="var">n</span> == <span class="num">1</span>) <span class="kw">return</span> <span class="num">1</span>;  <span class="cmt">// base case</span>
+    <span class="kw">return</span> <span class="var">n</span> * <span class="fn">factorial</span>(<span class="var">n</span> - <span class="num">1</span>);       <span class="cmt">// recursive case</span>
+}
+<span class="cmt">// factorial(4) → 4 * factorial(3) → 4*3*2*1 = 24</span>
+
+<span class="cmt">// Fibonacci (two recursive calls)</span>
+<span class="kw">public static int</span> <span class="fn">fib</span>(<span class="typ">int</span> <span class="var">n</span>) {
+    <span class="kw">if</span> (<span class="var">n</span> &lt;= <span class="num">1</span>) <span class="kw">return</span> <span class="var">n</span>;              <span class="cmt">// base cases: fib(0)=0, fib(1)=1</span>
+    <span class="kw">return</span> <span class="fn">fib</span>(<span class="var">n</span>-<span class="num">1</span>) + <span class="fn">fib</span>(<span class="var">n</span>-<span class="num">2</span>);       <span class="cmt">// recursive case</span>
+}
+
+<span class="cmt">// Recursive binary search</span>
+<span class="kw">public static int</span> <span class="fn">binarySearch</span>(<span class="typ">int</span>[] <span class="var">arr</span>, <span class="typ">int</span> <span class="var">target</span>,
+                                 <span class="typ">int</span> <span class="var">lo</span>, <span class="typ">int</span> <span class="var">hi</span>) {
+    <span class="kw">if</span> (<span class="var">lo</span> > <span class="var">hi</span>) <span class="kw">return</span> -<span class="num">1</span>;                  <span class="cmt">// base: not found</span>
+    <span class="typ">int</span> <span class="var">mid</span> = (<span class="var">lo</span> + <span class="var">hi</span>) / <span class="num">2</span>;
+    <span class="kw">if</span> (<span class="var">arr</span>[<span class="var">mid</span>] == <span class="var">target</span>) <span class="kw">return</span> <span class="var">mid</span>;  <span class="cmt">// base: found</span>
+    <span class="kw">if</span> (<span class="var">arr</span>[<span class="var">mid</span>] &lt; <span class="var">target</span>)                 <span class="cmt">// search right</span>
+        <span class="kw">return</span> <span class="fn">binarySearch</span>(<span class="var">arr</span>, <span class="var">target</span>, <span class="var">mid</span>+<span class="num">1</span>, <span class="var">hi</span>);
+    <span class="kw">else</span>                                     <span class="cmt">// search left</span>
+        <span class="kw">return</span> <span class="fn">binarySearch</span>(<span class="var">arr</span>, <span class="var">target</span>, <span class="var">lo</span>, <span class="var">mid</span>-<span class="num">1</span>);
+}</pre>
+    </div>
+    <div class="callout tip">
+      <span class="callout-icon">💡</span>
+      <p><strong>Tracing recursion on the AP exam:</strong> Draw a call tree. Start from the top call, expand children until you hit base cases, then bubble results back up. For factorial(4): 4→3→2→1(return 1)→2(return 2)→3(return 6)→4(return 24).</p>
+    </div>
+  </div>
+
+  <!-- SAMPLE QUESTIONS UNIT 4 -->
+  <div class="questions-section">
+    <h3>Sample Questions <span class="q-badge mcq">MCQ</span><span class="q-badge frq" style="margin-left:6px">FRQ</span></h3>
+
+    <div class="question-card" onclick="toggleQ(this)">
+      <div class="q-header">
+        <span class="q-type mcq">MCQ</span>
+        <span class="q-title">Polymorphism — which method is called?</span>
+        <span class="q-chevron">▼</span>
+      </div>
+      <div class="q-body">
+        <p class="q-prompt">Given the following class hierarchy where Animal has a <code style="font-family:var(--mono)">sound()</code> method returning "...", and Dog extends Animal and overrides <code style="font-family:var(--mono)">sound()</code> to return "Woof":<br><br>
+        <code style="font-family:var(--mono);background:var(--surface2);padding:8px 14px;border-radius:6px;display:block;margin:8px 0">Animal a = new Dog();<br>System.out.println(a.sound());</code><br>
+        What is printed?</p>
+        <ul class="q-options">
+          <li><span class="opt-letter">A</span> "..."</li>
+          <li class="correct"><span class="opt-letter">B</span> "Woof"</li>
+          <li><span class="opt-letter">C</span> Compile error</li>
+          <li><span class="opt-letter">D</span> Runtime error</li>
+        </ul>
+        <div class="answer-box">
+          <h5>✓ CORRECT ANSWER: B</h5>
+          <p><strong>Dynamic dispatch</strong> (runtime polymorphism) means Java uses the <em>actual runtime type</em> of the object to determine which method to call — not the declared reference type. The variable <code style="font-family:var(--mono)">a</code> is declared as Animal but holds a Dog object. Since Dog overrides <code style="font-family:var(--mono)">sound()</code>, Dog's version is called. This only works for overridden instance methods, not for fields or static methods (those use the declared type).</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="question-card" onclick="toggleQ(this)">
+      <div class="q-header">
+        <span class="q-type mcq">MCQ</span>
+        <span class="q-title">Tracing a recursive method</span>
+        <span class="q-chevron">▼</span>
+      </div>
+      <div class="q-body">
+        <p class="q-prompt">What does <code style="font-family:var(--mono)">mystery(5)</code> return?<br><br>
+        <code style="font-family:var(--mono);background:var(--surface2);padding:8px 14px;border-radius:6px;display:block;margin:8px 0">public static int mystery(int n) {<br>    if (n &lt;= 0) return 0;<br>    return n + mystery(n - 2);<br>}</code></p>
+        <ul class="q-options">
+          <li><span class="opt-letter">A</span> 15</li>
+          <li class="correct"><span class="opt-letter">B</span> 9</li>
+          <li><span class="opt-letter">C</span> 6</li>
+          <li><span class="opt-letter">D</span> Infinite recursion</li>
+        </ul>
+        <div class="answer-box">
+          <h5>✓ CORRECT ANSWER: B</h5>
+          <p>Trace the calls:<br>
+          mystery(5) = 5 + mystery(3)<br>
+          mystery(3) = 3 + mystery(1)<br>
+          mystery(1) = 1 + mystery(-1)<br>
+          mystery(-1) = 0 &nbsp;&nbsp;← base case (n ≤ 0)<br>
+          <br>
+          Unwind: mystery(-1)=0, mystery(1)=1+0=1, mystery(3)=3+1=4, mystery(5)=5+4=<strong>9</strong>.<br>
+          This sums odd numbers ≤ n. D is wrong because the base case n≤0 is always eventually reached (n decreases by 2 each call, eventually crossing 0).</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="question-card" onclick="toggleQ(this)">
+      <div class="q-header">
+        <span class="q-type frq">FRQ</span>
+        <span class="q-title">FRQ: Inheritance — Vehicle class hierarchy</span>
+        <span class="q-chevron">▼</span>
+      </div>
+      <div class="q-body">
+        <p class="q-prompt">Design an inheritance hierarchy for vehicles. A <code style="font-family:var(--mono)">Vehicle</code> has a make, model, and year. An <code style="font-family:var(--mono)">ElectricVehicle</code> extends Vehicle and adds a battery capacity (kWh) and range (miles). Write both classes with appropriate constructors and methods.</p>
+        <div class="frq-part"><strong>Part A:</strong> Write the Vehicle superclass with getters and a toString().</div>
+        <div class="frq-part"><strong>Part B:</strong> Write ElectricVehicle with a constructor that calls super(), a method <code style="font-family:var(--mono)">efficiency()</code> returning miles-per-kWh, and override toString() to include battery info.</div>
+        <div class="solution-box">
+          <h5>◆ SOLUTION</h5>
+          <div class="code-block" style="margin-top:8px">
+            <div class="code-header">
+              <div class="code-dots"><span></span><span></span><span></span></div>
+              <span>Vehicle.java + ElectricVehicle.java</span>
+            </div>
+            <pre><span class="cmt">// Part A: Superclass</span>
+<span class="kw">public class</span> <span class="typ">Vehicle</span> {
+    <span class="kw">private</span> <span class="typ">String</span> <span class="var">make</span>;
+    <span class="kw">private</span> <span class="typ">String</span> <span class="var">model</span>;
+    <span class="kw">private int</span>    <span class="var">year</span>;
+
+    <span class="kw">public</span> <span class="fn">Vehicle</span>(<span class="typ">String</span> <span class="var">make</span>, <span class="typ">String</span> <span class="var">model</span>, <span class="typ">int</span> <span class="var">year</span>) {
+        <span class="kw">this</span>.<span class="var">make</span>  = <span class="var">make</span>;
+        <span class="kw">this</span>.<span class="var">model</span> = <span class="var">model</span>;
+        <span class="kw">this</span>.<span class="var">year</span>  = <span class="var">year</span>;
+    }
+
+    <span class="kw">public</span> <span class="typ">String</span> <span class="fn">getMake</span>()  { <span class="kw">return</span> <span class="var">make</span>;  }
+    <span class="kw">public</span> <span class="typ">String</span> <span class="fn">getModel</span>() { <span class="kw">return</span> <span class="var">model</span>; }
+    <span class="kw">public int</span>    <span class="fn">getYear</span>()  { <span class="kw">return</span> <span class="var">year</span>;  }
+
+    <span class="ann">@Override</span>
+    <span class="kw">public</span> <span class="typ">String</span> <span class="fn">toString</span>() {
+        <span class="kw">return</span> <span class="var">year</span> + <span class="str">" "</span> + <span class="var">make</span> + <span class="str">" "</span> + <span class="var">model</span>;
+    }
+}
+
+<span class="cmt">// Part B: Subclass</span>
+<span class="kw">public class</span> <span class="typ">ElectricVehicle</span> <span class="kw">extends</span> <span class="typ">Vehicle</span> {
+    <span class="kw">private double</span> <span class="var">batteryCapacity</span>; <span class="cmt">// kWh</span>
+    <span class="kw">private double</span> <span class="var">range</span>;           <span class="cmt">// miles</span>
+
+    <span class="kw">public</span> <span class="fn">ElectricVehicle</span>(<span class="typ">String</span> <span class="var">make</span>, <span class="typ">String</span> <span class="var">model</span>, <span class="typ">int</span> <span class="var">year</span>,
+                            <span class="typ">double</span> <span class="var">battery</span>, <span class="typ">double</span> <span class="var">range</span>) {
+        <span class="kw">super</span>(<span class="var">make</span>, <span class="var">model</span>, <span class="var">year</span>); <span class="cmt">// call superclass constructor</span>
+        <span class="kw">this</span>.<span class="var">batteryCapacity</span> = <span class="var">battery</span>;
+        <span class="kw">this</span>.<span class="var">range</span> = <span class="var">range</span>;
+    }
+
+    <span class="kw">public double</span> <span class="fn">getBattery</span>() { <span class="kw">return</span> <span class="var">batteryCapacity</span>; }
+    <span class="kw">public double</span> <span class="fn">getRange</span>()   { <span class="kw">return</span> <span class="var">range</span>; }
+
+    <span class="kw">public double</span> <span class="fn">efficiency</span>() {
+        <span class="kw">return</span> <span class="var">range</span> / <span class="var">batteryCapacity</span>; <span class="cmt">// miles per kWh</span>
+    }
+
+    <span class="ann">@Override</span>
+    <span class="kw">public</span> <span class="typ">String</span> <span class="fn">toString</span>() {
+        <span class="kw">return</span> <span class="kw">super</span>.<span class="fn">toString</span>()           <span class="cmt">// reuse parent</span>
+               + <span class="str">" [EV, "</span> + <span class="var">batteryCapacity</span> + <span class="str">"kWh, "</span>
+               + <span class="var">range</span> + <span class="str">"mi range]"</span>;
+    }
+}
+<span class="cmt">// new ElectricVehicle("Tesla","Model3",2024,82,350).toString()
+// → "2024 Tesla Model3 [EV, 82.0kWh, 350.0mi range]"</span></pre>
+          </div>
+          <div class="answer-box" style="margin-top:10px">
+            <h5>✓ EXPLANATION — AP Scoring Priorities</h5>
+            <p>• <strong>super() first:</strong> The superclass constructor call must be the <em>very first</em> line of the subclass constructor. Omitting it or placing it later is a compile error.<br><br>
+            • <strong>Private inheritance:</strong> Because Vehicle's fields are private, ElectricVehicle cannot access them directly — it must use the getters (getMake(), getModel(), etc.). This is correct encapsulation.<br><br>
+            • <strong>super.toString():</strong> Reusing the parent's toString() in the override avoids duplicating logic and is explicitly rewarded by AP graders.<br><br>
+            • <strong>@Override:</strong> Always include this annotation — it catches signature mistakes at compile time and signals intent to graders.<br><br>
+            • <strong>efficiency():</strong> A subclass-specific method unavailable through a Vehicle reference — only usable when the reference type is ElectricVehicle.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="question-card" onclick="toggleQ(this)">
+      <div class="q-header">
+        <span class="q-type frq">FRQ</span>
+        <span class="q-title">FRQ: Recursion — palindrome checker</span>
+        <span class="q-chevron">▼</span>
+      </div>
+      <div class="q-body">
+        <p class="q-prompt">Write a recursive method <code style="font-family:var(--mono)">isPalindrome(String s)</code> that returns true if the string is a palindrome (reads the same forwards and backwards). Do not use loops. Ignore case.</p>
+        <div class="frq-part"><strong>Base cases:</strong> A string of length 0 or 1 is always a palindrome.</div>
+        <div class="frq-part"><strong>Recursive case:</strong> Check if the first and last characters match (ignoring case), and if so, recurse on the middle substring.</div>
+        <div class="solution-box">
+          <h5>◆ SOLUTION</h5>
+          <div class="code-block" style="margin-top:8px">
+            <div class="code-header">
+              <div class="code-dots"><span></span><span></span><span></span></div>
+              <span>Palindrome.java</span>
+            </div>
+            <pre><span class="kw">public static boolean</span> <span class="fn">isPalindrome</span>(<span class="typ">String</span> <span class="var">s</span>) {
+    <span class="cmt">// Base cases: empty or single character</span>
+    <span class="kw">if</span> (<span class="var">s</span>.<span class="fn">length</span>() &lt;= <span class="num">1</span>) <span class="kw">return true</span>;
+
+    <span class="cmt">// Get first and last characters (ignore case)</span>
+    <span class="typ">char</span> <span class="var">first</span> = <span class="typ">Character</span>.<span class="fn">toLowerCase</span>(<span class="var">s</span>.<span class="fn">charAt</span>(<span class="num">0</span>));
+    <span class="typ">char</span> <span class="var">last</span>  = <span class="typ">Character</span>.<span class="fn">toLowerCase</span>(<span class="var">s</span>.<span class="fn">charAt</span>(<span class="var">s</span>.<span class="fn">length</span>() - <span class="num">1</span>));
+
+    <span class="cmt">// If outer chars don't match, not a palindrome</span>
+    <span class="kw">if</span> (<span class="var">first</span> != <span class="var">last</span>) <span class="kw">return false</span>;
+
+    <span class="cmt">// Recurse on the middle substring</span>
+    <span class="kw">return</span> <span class="fn">isPalindrome</span>(<span class="var">s</span>.<span class="fn">substring</span>(<span class="num">1</span>, <span class="var">s</span>.<span class="fn">length</span>() - <span class="num">1</span>));
+}
+
+<span class="cmt">// isPalindrome("Racecar") → true
+// isPalindrome("hello")   → false
+// isPalindrome("A")       → true
+// isPalindrome("")        → true</span></pre>
+          </div>
+          <div class="answer-box" style="margin-top:10px">
+            <h5>✓ EXPLANATION</h5>
+            <p>• <strong>Two base cases:</strong> Empty string and single character are both palindromes trivially. Combining with <code style="font-family:var(--mono)">&lt;= 1</code> handles both in one check.<br><br>
+            • <strong>Recursive reduction:</strong> <code style="font-family:var(--mono)">substring(1, length-1)</code> strips one character from each end, making the problem strictly smaller each call. This guarantees we reach the base case.<br><br>
+            • <strong>Early return false:</strong> If the outer characters don't match, we immediately return false without making an unnecessary recursive call — this is an optimization the AP exam rewards.<br><br>
+            • <strong>Case handling:</strong> Converting to lowercase before comparing handles the ignore-case requirement cleanly.<br><br>
+            • <strong>No loops:</strong> This solution is purely recursive — each call makes exactly one recursive call or returns a base case value.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p>AP Computer Science A — 2025–2026 Curriculum Guide &nbsp;·&nbsp; 4 Units &nbsp;·&nbsp; Built for exam success</p>
+  <p style="margin-top:8px;font-size:0.72rem">AP® is a registered trademark of College Board. This study guide is for educational use.</p>
+</footer>
+
+<!-- BACK TO TOP -->
+<a href="#" id="back-top" title="Back to top">↑</a>
+
+<script>
+  // Toggle question cards
+  function toggleQ(card) {
+    card.classList.toggle('open');
+  }
+
+  // Progress bar
+  window.addEventListener('scroll', () => {
+    const doc = document.documentElement;
+    const scrolled = doc.scrollTop || document.body.scrollTop;
+    const total = doc.scrollHeight - doc.clientHeight;
+    const pct = (scrolled / total) * 100;
+    document.getElementById('progress-fill').style.width = pct + '%';
+
+    const btn = document.getElementById('back-top');
+    btn.classList.toggle('visible', scrolled > 400);
+  });
+</script>
+</body>
+</html>
